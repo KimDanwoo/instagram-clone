@@ -1,7 +1,7 @@
-import AppLogo from '@/components/icons/AppLogo'
 import './globals.css'
 import { Open_Sans } from 'next/font/google'
 import AppHeader from '@/components/main/AppHeader'
+import AuthContext from './context/AuthContext'
 
 const openSans = Open_Sans({ subsets: ['latin'] })
 
@@ -18,8 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={openSans.className}>
       <body className="flex flex-col md:flex-row ">
-        <AppHeader />
-        <div>{children}</div>
+        <AuthContext>
+          <AppHeader />
+          <main>{children}</main>
+        </AuthContext>
       </body>
     </html>
   )

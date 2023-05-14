@@ -6,3 +6,4 @@ Next.js v13 instagram clone page
 - react-icon
 - sanity-studio
 - tailwind
+- auth.js

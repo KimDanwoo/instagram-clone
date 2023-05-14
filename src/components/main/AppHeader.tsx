@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import LookIcon from '@/components/icons/LookIcon'
 import AddPostIcon from '@/components/icons/AddPostIcon'
@@ -5,6 +6,7 @@ import ActiveLookIcon from '../icons/ActiveLookIcon'
 import ActiveCreateIcon from '../icons/ActiveCreateIcon'
 import NavItem from '../common/NavItem'
 import MainLogo from '../common/MainLogo'
+import { useSession, signIn, signOut } from 'next-auth/react'
 
 const menus = [
   {
@@ -32,6 +34,7 @@ export interface NavProps {
 }
 
 export default function AppHeader() {
+  const { data: session } = useSession()
   return (
     <header className="flex justify-between md:flex-col h-16 md:h-screen md:w-16 md:border-r lg:w-80 border-b md:p-3 md:justify-start lg:pt-10">
       <MainLogo />
@@ -39,6 +42,17 @@ export default function AppHeader() {
         {menus.map((menu, idx) => (
           <NavItem menu={menu} key={idx} />
         ))}
+        <li className="group p-2 rounded-xl hover:bg-gray-100 lg:w-full lg:flex my-2">
+          {session ? (
+            <button className=" text-xs font-bold" onClick={() => signOut()}>
+              sign out
+            </button>
+          ) : (
+            <button className=" text-xs font-bold" onClick={() => signIn()}>
+              sign in
+            </button>
+          )}
+        </li>
       </ul>
     </header>
   )
