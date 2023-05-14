@@ -1,8 +1,9 @@
-import React from "react";
+import React from 'react'
 
-export default function AddPostIcon() {
+export default function AddPostIcon({ className }: { className: string }) {
   return (
     <svg
+      className={className}
       aria-label="새로운 게시물"
       color="rgb(0, 0, 0)"
       fill="rgb(0, 0, 0)"
@@ -42,5 +43,5 @@ export default function AddPostIcon() {
         y2="17.455"
       ></line>
     </svg>
-  );
+  )
 }
