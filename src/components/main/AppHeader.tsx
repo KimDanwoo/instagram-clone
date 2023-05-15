@@ -41,7 +41,7 @@ export default function AppHeader() {
   return (
     <header className="flex justify-between md:flex-col h-16 md:h-screen md:w-16 md:border-r lg:w-80 border-b md:p-3 md:justify-start lg:pt-10">
       <MainLogo />
-      <ul className="flex md:flex-col items-center w-40 justify-around md:w-full lg:items-start lg:p-2 lg:pt-11">
+      <ul className="flex md:flex-col items-center w-48 justify-around md:w-full lg:items-start lg:p-2 lg:pt-11">
         {menus.map((menu, idx) => (
           <NavItem menu={menu} key={idx} />
         ))}
@@ -56,11 +56,11 @@ export default function AppHeader() {
         <li className="group p-2 rounded-xl hover:bg-gray-100 lg:w-full lg:flex my-2">
           {session ? (
             <button className=" text-xs font-bold" onClick={() => signOut()}>
-              sign out
+              signout
             </button>
           ) : (
             <button className=" text-xs font-bold" onClick={() => signIn()}>
-              sign in
+              signin
             </button>
           )}
         </li>
