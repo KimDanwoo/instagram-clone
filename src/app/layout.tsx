@@ -20,7 +20,7 @@ export default function RootLayout({
       <body className="flex flex-col md:flex-row ">
         <AuthContext>
           <AppHeader />
-          <main>{children}</main>
+          <main className="w-full">{children}</main>
         </AuthContext>
       </body>
     </html>
