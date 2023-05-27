@@ -13,7 +13,7 @@ export default function MainPosts({ user: { username, image, name } }: Props) {
       <div>
         <li className="flex items-center">
           <Link href={`/user/${username}`}>
-            <Avatar image={image} size={14} />
+            <Avatar image={image} size={12} />
           </Link>
           <div className="flex flex-col">
             <span className="ml-4 font-bold ">{username}</span>

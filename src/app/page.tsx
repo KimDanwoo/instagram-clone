@@ -1,11 +1,13 @@
-import MainPosts from '@/components/layout/MainPosts'
 import SideBar from '@/components/layout/SideBar'
+import FollowingBar from '@/components/main/FollowingBar'
+import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
 
 export default async function HomePage() {
-  const session = await getServerSession()
+  const session = await getServerSession(authOptions)
   const user = session?.user
+  console.info(user)
 
   if (!user) {
     redirect('/auth/signin')
@@ -14,7 +16,10 @@ export default async function HomePage() {
   return (
     <section className="w-full mt-8">
       <div className="flex">
-        <MainPosts />
+        <div className="w-full xl:w-3/5">
+          <FollowingBar />
+          <div>하이루</div>
+        </div>
         <SideBar user={user} />
       </div>
     </section>

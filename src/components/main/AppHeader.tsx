@@ -9,7 +9,6 @@ import MainLogo from '../common/MainLogo'
 import { useSession, signIn, signOut } from 'next-auth/react'
 import Avatar from './Avatar'
 import Link from 'next/link'
-import { redirect } from 'next/navigation'
 
 const menus = [
   {
@@ -47,20 +46,22 @@ export default function AppHeader() {
         {menus.map((menu, idx) => (
           <NavItem menu={menu} key={idx} />
         ))}
-        <li className="group p-2 rounded-xl hover:bg-gray-100 lg:w-full lg:flex my-2">
-          <Link href={`/user/${user?.username}`}>
-            <Avatar image={user?.image} size={9} />
-          </Link>
-        </li>
+        {user && (
+          <li className="group p-2 rounded-xl hover:bg-gray-100 lg:w-full lg:flex my-2">
+            <Link href={`/user/${user?.username}`}>
+              <Avatar image={user?.image} size={9} />
+            </Link>
+          </li>
+        )}
 
         <li className="group p-2 rounded-xl hover:bg-gray-100 lg:w-full lg:flex my-2">
           {session ? (
             <button className=" text-xs font-bold" onClick={() => signOut()}>
-              signOut
+              로그아웃
             </button>
           ) : (
             <button className=" text-xs font-bold" onClick={() => signIn()}>
-              signIn
+              로그인
             </button>
           )}
         </li>

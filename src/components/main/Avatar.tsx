@@ -8,9 +8,11 @@ export default function Avatar({ image, size }: Props) {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         className="rounded-full p-[0.1rem]"
-        src={image ?? undefined}
-        alt="user profile"
+        src={image ?? ''}
+        alt="profile"
+        referrerPolicy="no-referrer"
       />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
     </div>
   )
 }
