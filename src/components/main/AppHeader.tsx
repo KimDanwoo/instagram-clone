@@ -46,12 +46,16 @@ export default function AppHeader() {
         {menus.map((menu, idx) => (
           <NavItem menu={menu} key={idx} />
         ))}
-        {user && (
+
+        {user ? (
           <li className="group p-2 rounded-xl hover:bg-gray-100 lg:w-full lg:flex my-2">
-            <Link href={`/user/${user?.username}`}>
+            <Link href={`/user/${user?.username}`} className="flex">
               <Avatar image={user?.image} size={9} />
+              <span className="ml-5 hidden lg:inline-block">프로필</span>
             </Link>
           </li>
+        ) : (
+          <li className='className="group p-8 rounded-xl hover:bg-gray-100 lg:w-full lg:flex"' />
         )}
 
         <li className="group p-2 rounded-xl hover:bg-gray-100 lg:w-full lg:flex my-2">
