@@ -13,7 +13,7 @@ export default async function HomePage() {
   }
 
   return (
-    <section className="w-full mt-8">
+    <section className="w-full mt-4">
       <div className="flex">
         <div className="w-full xl:w-3/5">
           <FollowingBar />

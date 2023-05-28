@@ -16,7 +16,7 @@ export default function FollowingBar() {
   return (
     <section>
       {loading ? (
-        <SyncLoader size={8} color="blue" />
+        <SyncLoader size={8} color="blue" className=" w-9 m-auto my-12" />
       ) : (
         (!users || users?.length === 0) && (
           <li>
@@ -31,8 +31,8 @@ export default function FollowingBar() {
         )
       )}
       {users && users?.length > 0 && (
-        <ul className="flex">
-          <li>
+        <ul className="flex w-[95%] mx-auto p-4">
+          <li className="block xl:hidden">
             <Link
               href={`/user/${user?.username}`}
               className="flex flex-col items-center mx-2"
