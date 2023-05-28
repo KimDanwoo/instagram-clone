@@ -40,31 +40,31 @@ export default function AppHeader() {
   const user = session?.user
 
   return (
-    <header className="flex justify-between md:flex-col h-16 md:h-screen md:w-16 md:border-r lg:w-80 border-b md:p-3 md:justify-start lg:pt-10">
+    <header className={headerStyle}>
       <MainLogo />
-      <ul className="flex md:flex-col items-center w-48 justify-around md:w-full lg:items-start lg:p-2 lg:pt-11">
+      <ul className={ulStyle}>
         {menus.map((menu, idx) => (
           <NavItem menu={menu} key={idx} />
         ))}
 
         {user ? (
-          <li className="group p-2 rounded-xl hover:bg-gray-100 lg:w-full lg:flex my-2">
+          <li className={liStyle}>
             <Link href={`/user/${user?.username}`} className="flex">
               <Avatar image={user?.image} size={9} />
               <span className="ml-5 hidden lg:inline-block">프로필</span>
             </Link>
           </li>
         ) : (
-          <li className='className="group p-8 rounded-xl hover:bg-gray-100 lg:w-full lg:flex"' />
+          <li className='group p-8 rounded-xl hover:bg-gray-100 lg:w-full lg:flex"' />
         )}
 
-        <li className="group p-2 rounded-xl hover:bg-gray-100 lg:w-full lg:flex my-2">
+        <li className={liStyle}>
           {session ? (
-            <button className=" text-xs font-bold" onClick={() => signOut()}>
+            <button className={buttonStyle} onClick={() => signOut()}>
               로그아웃
             </button>
           ) : (
-            <button className=" text-xs font-bold" onClick={() => signIn()}>
+            <button className={buttonStyle} onClick={() => signIn()}>
               로그인
             </button>
           )}
@@ -73,3 +73,11 @@ export default function AppHeader() {
     </header>
   )
 }
+
+const ulStyle =
+  'flex md:flex-col items-center w-48 justify-around md:w-full lg:items-start lg:p-2 lg:pt-11'
+
+const liStyle = 'group p-2 rounded-xl hover:bg-gray-100 lg:w-full lg:flex my-2'
+const headerStyle =
+  'flex justify-between md:flex-col h-16 md:h-screen md:w-16 md:border-r lg:w-80 border-b md:p-3 md:justify-start lg:pt-10'
+const buttonStyle = 'text-xs font-bold'

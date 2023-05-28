@@ -6,13 +6,17 @@ import { usePathname } from 'next/navigation'
 
 export default function NavItem({ menu }: { menu: NavProps }) {
   const path = usePathname()
-  const { id, href, activeIcon, icon, subtitle } = menu
+  const { href, activeIcon, icon, subtitle } = menu
   return (
-    <li className="group p-2 rounded-xl hover:bg-gray-100 lg:w-full lg:flex my-2">
-      <Link href={href} className="flex w-full">
+    <li className={liStyle}>
+      <Link href={href} className={linkStyle}>
         {path === href ? activeIcon : icon}
-        <span className="hidden lg:inline-block ml-5">{subtitle}</span>
+        <span className={spanStyle}>{subtitle}</span>
       </Link>
     </li>
   )
 }
+
+const linkStyle = 'flex w-full'
+const spanStyle = 'hidden lg:inline-block ml-5'
+const liStyle = 'group p-2 rounded-xl hover:bg-gray-100 lg:w-full lg:flex my-2'
