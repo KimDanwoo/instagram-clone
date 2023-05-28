@@ -1,7 +1,8 @@
 import './globals.css'
 import { Open_Sans } from 'next/font/google'
 import AppHeader from '@/components/main/AppHeader'
-import AuthContext from './context/AuthContext'
+import AuthContext from '../context/AuthContext'
+import SWRConfigContext from '@/context/SWRConfigContext'
 
 const openSans = Open_Sans({ subsets: ['latin'] })
 
@@ -20,7 +21,9 @@ export default function RootLayout({
       <body className="flex flex-col md:flex-row ">
         <AuthContext>
           <AppHeader />
-          <main className="w-full">{children}</main>
+          <main className="w-full">
+            <SWRConfigContext>{children}</SWRConfigContext>
+          </main>
         </AuthContext>
       </body>
     </html>

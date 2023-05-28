@@ -7,3 +7,4 @@ Next.js v13 instagram clone page
 - sanity-studio
 - tailwind
 - auth.js
+- swr
