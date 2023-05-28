@@ -8,3 +8,4 @@ Next.js v13 instagram clone page
 - tailwind
 - auth.js
 - swr
+- react-spinners
