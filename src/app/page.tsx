@@ -17,7 +17,7 @@ export default async function HomePage() {
       <div className="flex">
         <div className="w-full xl:w-3/5">
           <FollowingBar />
-          <div>하이루</div>
+          <div>메인 화면</div>
         </div>
         <SideBar user={user} />
       </div>
