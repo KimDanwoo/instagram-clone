@@ -1,20 +1,24 @@
 import React from 'react'
-import HeartIcon from '../icons/HeartIcon'
-import ChatIcon from '../icons/ChatIcon'
-import BookmarkIcon from '../icons/BookmarkIcon'
+import HeartIcon from '../ui/icons/HeartIcon'
+import BookmarkIcon from '../ui/icons/BookmarkIcon'
+import { RiChat1Line } from 'react-icons/ri'
 
 type Props = {
   likes: string
   username: string
   text: string
+  openModal: () => void
 }
-export default function ActionBar({ likes, username, text }: Props) {
+export default function ActionBar({ likes, username, text, openModal }: Props) {
   return (
     <>
       <div className="flex justify-between my-3">
         <div className="flex w-40">
           <HeartIcon />
-          <ChatIcon />
+          <RiChat1Line
+            className="text-3xl ml-3 cursor-pointer"
+            onClick={openModal}
+          />
         </div>
         <div>
           <BookmarkIcon />

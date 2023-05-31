@@ -1,5 +1,5 @@
 import React from 'react'
-import SmileIcon from '../icons/SmileIcon'
+import SmileIcon from '../ui/icons/SmileIcon'
 
 export default function CommentForm() {
   return (

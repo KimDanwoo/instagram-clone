@@ -1,10 +1,13 @@
+'use client'
 import { simplePost } from '@/model/post'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import Avatar from '../main/Avatar'
 import { parseDate } from '@/utils/date'
 import CommentForm from './CommentForm'
 import ActionBar from './ActionBar'
+import ModalPortal from '../ui/modal/ModalPortal'
+import PostModal from '../ui/modal/PostModal'
 
 type Props = {
   post: simplePost
@@ -13,6 +16,7 @@ type Props = {
 
 export default function PostListCard({ post, priority = false }: Props) {
   const { image, id, text, userImage, username, likes, createdAt } = post
+  const [openModal, setOpenModal] = useState<boolean>(false)
   const createdAtStr = createdAt.toString()
   return (
     <article className="w-[468px] rounded-md  mx-auto my-2 border-b">
@@ -33,8 +37,20 @@ export default function PostListCard({ post, priority = false }: Props) {
           priority={priority}
         />
       </div>
-      <ActionBar likes={likes} username={username} text={text} />
+      <ActionBar
+        likes={likes}
+        username={username}
+        text={text}
+        openModal={() => setOpenModal(true)}
+      />
       <CommentForm />
+      {openModal && (
+        <ModalPortal>
+          <PostModal onClose={() => setOpenModal(false)}>
+            <div>하이루</div>
+          </PostModal>
+        </ModalPortal>
+      )}
     </article>
   )
 }

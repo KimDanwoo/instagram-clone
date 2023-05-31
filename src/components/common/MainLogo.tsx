@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
-import AppLogo from '../icons/AppLogo'
-import AppLogoIcon from '../icons/AppLogoIcon'
+import AppLogo from '../ui/icons/AppLogo'
+import AppLogoIcon from '../ui/icons/AppLogoIcon'
 
 export default function MainLogo() {
   return (
