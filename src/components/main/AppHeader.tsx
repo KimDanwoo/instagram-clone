@@ -79,5 +79,5 @@ const ulStyle =
 
 const liStyle = 'group p-2 rounded-xl hover:bg-gray-100 lg:w-full lg:flex my-2'
 const headerStyle =
-  'flex justify-between md:flex-col h-16 md:h-screen md:w-16 md:border-r lg:w-80 border-b md:p-3 md:justify-start lg:pt-10'
+  'flex justify-between w-full md:flex-col h-16 md:h-screen md:w-16 md:border-r lg:w-80 border-b md:p-3 md:justify-start lg:pt-10 fixed bg-white z-10'
 const buttonStyle = 'text-xs font-bold'
