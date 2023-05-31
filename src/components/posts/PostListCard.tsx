@@ -2,15 +2,16 @@ import { simplePost } from '@/model/post'
 import Image from 'next/image'
 import React from 'react'
 import Avatar from '../main/Avatar'
-import HeartIcon from '../icons/HeartIcon'
-import BookmarkIcon from '../icons/BookmarkIcon'
-import SmileIcon from '../icons/SmileIcon'
 import { parseDate } from '@/utils/date'
-import ChatIcon from '../icons/ChatIcon'
+import CommentForm from './CommentForm'
+import ActionBar from './ActionBar'
 
-type Props = { post: simplePost }
+type Props = {
+  post: simplePost
+  priority?: boolean
+}
 
-export default function PostListCard({ post }: Props) {
+export default function PostListCard({ post, priority = false }: Props) {
   const { image, id, text, userImage, username, likes, createdAt } = post
   const createdAtStr = createdAt.toString()
   return (
@@ -29,28 +30,11 @@ export default function PostListCard({ post }: Props) {
           width={465}
           height={465}
           alt={`photo by ${id}`}
+          priority={priority}
         />
       </div>
-      <div className="flex justify-between my-3">
-        <div className="flex w-40">
-          <HeartIcon />
-          <ChatIcon />
-        </div>
-        <div>
-          <BookmarkIcon />
-        </div>
-      </div>
-      <div>
-        <p className="font-bold">{`좋아요 ${likes?.length ?? 0}개`}</p>
-        <p>
-          <span className="font-bold">{username}</span>
-          <span className="ml-3">{text}</span>
-        </p>
-        <form className="flex items-center">
-          <SmileIcon  />
-          <input type="text" placeholder="Add a comments..." />
-        </form>
-      </div>
+      <ActionBar likes={likes} username={username} text={text} />
+      <CommentForm />
     </article>
   )
 }
