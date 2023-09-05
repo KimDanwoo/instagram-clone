@@ -14,6 +14,7 @@ type Props = {
   priority?: boolean
 }
 
+
 export default function PostListCard({ post, priority = false }: Props) {
   const { image, id, text, userImage, username, likes, createdAt } = post
   const [openModal, setOpenModal] = useState<boolean>(false)
