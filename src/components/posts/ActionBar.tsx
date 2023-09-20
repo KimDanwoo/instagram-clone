@@ -6,7 +6,7 @@ import { RiChat1Line } from 'react-icons/ri'
 type Props = {
   likes: string
   username: string
-  text: string
+  text?: string
   openModal: () => void
 }
 export default function ActionBar({ likes, username, text, openModal }: Props) {
@@ -26,10 +26,12 @@ export default function ActionBar({ likes, username, text, openModal }: Props) {
       </div>
       <div>
         <p className="font-bold text-sm">{`좋아요 ${likes?.length ?? 0}개`}</p>
-        <p className="my-2">
-          <span className="font-bold text-sm">{username}</span>
-          <span className="ml-3 text-sm">{text}</span>
-        </p>
+        {text && (
+          <p className="my-2">
+            <span className="font-bold text-sm">{username}</span>
+            <span className="ml-3 text-sm">{text}</span>
+          </p>
+        )}
         <p></p>
       </div>
     </>

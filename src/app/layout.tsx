@@ -18,15 +18,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={openSans.className}>
-      <body className="flex flex-col md:flex-row ">
-        <AuthContext>
+      <AuthContext>
+        <body className="flex flex-col md:flex-row ">
           <AppHeader />
           <main className="w-full">
             <SWRConfigContext>{children}</SWRConfigContext>
           </main>
-        </AuthContext>
-        <div id="portal" />
-      </body>
+          <div id="portal" />
+        </body>
+      </AuthContext>
     </html>
   )
 }

@@ -1,11 +1,11 @@
 'use client'
 import React from 'react'
-type Props = { image?: string | null; size: number }
+type Props = { image?: string | null; size: number; highlight?: boolean }
 
-export default function Avatar({ image, size }: Props) {
+export default function Avatar({ image, size, highlight }: Props) {
   const itemSize = size === 9 ? 'small' : size === 7 ? 'middle' : 'large'
   return (
-    <div className={getContainerStyle(itemSize, true)}>
+    <div className={getContainerStyle(itemSize, highlight ? highlight : false)}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         className={getImgSizeStyle(itemSize)}

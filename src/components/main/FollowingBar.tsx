@@ -24,7 +24,7 @@ export default function FollowingBar() {
               href={`/user/${user?.username}`}
               className="flex flex-col items-center mx-2"
             >
-              <Avatar image={user?.image} size={16}></Avatar>
+              <Avatar image={user?.image} size={16} highlight={true}></Avatar>
               <p className=" text-xs mt-2">{user?.username}</p>
             </Link>
           </li>
@@ -36,7 +36,7 @@ export default function FollowingBar() {
             href={`/user/${user?.username}`}
             className="flex flex-col items-center mx-2"
           >
-            <Avatar image={user?.image} size={16}></Avatar>
+            <Avatar image={user?.image} size={16} highlight={true}></Avatar>
             <p className=" text-xs mt-2">{user?.username}</p>
           </Link>
           {users.map(({ username, image }) => (
