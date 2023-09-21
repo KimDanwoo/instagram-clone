@@ -7,9 +7,8 @@ export default function Address() {
         About · Help · Press · API · Jobs · privacy · Terms · Location ·
         Language
       </p>
-      <p className=" text-xs font-bold text-gray-500">
-        © Copyright instantGram from <br />
-        DanWoo
+      <p className="text-xs font-bold text-gray-500">
+        © Copyright instantGram from Danwoo
       </p>
     </div>
   )

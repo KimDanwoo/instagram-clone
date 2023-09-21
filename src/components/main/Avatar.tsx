@@ -3,7 +3,8 @@ import React from 'react'
 type Props = { image?: string | null; size: number; highlight?: boolean }
 
 export default function Avatar({ image, size, highlight }: Props) {
-  const itemSize = size === 9 ? 'small' : size === 7 ? 'middle' : 'large'
+  const itemSize =
+    size === 9 ? 'small' : size === 7 ? 'middle' : size === 13 ? 'large' : 'big'
   return (
     <div className={getContainerStyle(itemSize, highlight ? highlight : false)}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -27,7 +28,9 @@ function getContainerStyle(size: string, highlight: boolean): string {
       ? 'w-[26px] h-[26px]'
       : size === 'middle'
       ? 'w-[40px] h-[40px] '
-      : 'w-[68px] h-[68px]'
+      : size === 'large'
+      ? 'w-[68px] h-[68px]'
+      : 'w-[150px] h-[150px]'
   return `${baseStyle} ${highlightStyle} ${sizeStyle}`
 }
 
@@ -38,6 +41,8 @@ function getImgSizeStyle(size: string): string {
       ? 'w-[26px] h-[26px] p-[0.1rem]'
       : size === 'middle'
       ? 'w-[38px] h-[38px] p-[0.1rem]'
-      : 'w-16 h-16 p-[0.2rem]'
+      : size === 'large'
+      ? 'w-16 h-16 p-[0.2rem]'
+      : 'w-36 h-36 p-[0.2rem]'
   return `${baseStyle} ${sizeStyle}`
 }

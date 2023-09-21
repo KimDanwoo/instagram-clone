@@ -1,5 +1,5 @@
 'use client'
-import { simplePost } from '@/model/post'
+import { SimplePost } from '@/model/post'
 import Image from 'next/image'
 import React, { useState } from 'react'
 import Avatar from '../main/Avatar'
@@ -11,7 +11,7 @@ import PostModal from '../ui/modal/PostModal'
 import PostDetail from './PostDetail'
 
 type Props = {
-  post: simplePost
+  post: SimplePost
   priority?: boolean
 }
 

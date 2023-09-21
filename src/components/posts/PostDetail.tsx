@@ -1,4 +1,4 @@
-import { FullPost, simplePost } from '@/model/post'
+import { FullPost, SimplePost } from '@/model/post'
 import React from 'react'
 import Image from 'next/image'
 import ActionBar from './ActionBar'
@@ -8,7 +8,7 @@ import UserProfileAvatar from './UserProfileAvatar'
 import CommentUserList from './CommentUserList'
 
 type Props = {
-  post: simplePost
+  post: SimplePost
   priority: boolean
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
 }

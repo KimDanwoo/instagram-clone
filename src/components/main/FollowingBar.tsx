@@ -1,5 +1,5 @@
 'use client'
-import { DetailUser } from '@/model/user'
+import { HomeUser } from '@/model/user'
 import Link from 'next/link'
 import React from 'react'
 import { SyncLoader } from 'react-spinners'
@@ -11,7 +11,7 @@ import ScrollableBar from '../custom/ScrollableBar'
 export default function FollowingBar() {
   const { data: session } = useSession()
   const user = session?.user
-  const { data, isLoading: loading, error } = useSWR<DetailUser>('/api/me')
+  const { data, isLoading: loading, error } = useSWR<HomeUser>('/api/me')
   const users = data?.following
   return (
     <section>
@@ -24,7 +24,7 @@ export default function FollowingBar() {
               href={`/user/${user?.username}`}
               className="flex flex-col items-center mx-2"
             >
-              <Avatar image={user?.image} size={16} highlight={true}></Avatar>
+              <Avatar image={user?.image} size={13} highlight={true}></Avatar>
               <p className=" text-xs mt-2">{user?.username}</p>
             </Link>
           </li>
@@ -36,7 +36,7 @@ export default function FollowingBar() {
             href={`/user/${user?.username}`}
             className="flex flex-col items-center mx-2"
           >
-            <Avatar image={user?.image} size={16} highlight={true}></Avatar>
+            <Avatar image={user?.image} size={13} highlight={true}></Avatar>
             <p className=" text-xs mt-2">{user?.username}</p>
           </Link>
           {users.map(({ username, image }) => (
@@ -45,7 +45,7 @@ export default function FollowingBar() {
               className="flex flex-col items-center mx-2"
               key={username}
             >
-              <Avatar image={image} size={16}></Avatar>
+              <Avatar image={image} size={13}></Avatar>
               <p className=" text-xs mt-2">{username}</p>
             </Link>
           ))}
