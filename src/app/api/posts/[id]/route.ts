@@ -1,12 +1,12 @@
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
-import { getFollowingPostsOf, getPost } from '@/service/posts'
-import { getUserByUsername } from '@/service/user'
+import { getPost } from '@/service/posts'
 import { getServerSession } from 'next-auth'
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
+
 type Context = {
   params: { id: string }
 }
-export async function GET(request: NextResponse, context: Context) {
+export async function GET(_: NextRequest, context: Context) {
   const session = await getServerSession(authOptions)
   const user = session?.user
 

@@ -4,6 +4,14 @@ import React from 'react'
 import { redirect } from 'next/navigation'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
+import { Metadata } from 'next'
+
+export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = {
+  title: 'User Search',
+  description: 'Search users to follow',
+}
 
 export default async function page() {
   const session = await getServerSession(authOptions)
