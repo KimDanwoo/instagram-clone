@@ -61,12 +61,7 @@ export default function PostDetail({ post, priority, setOpenModal }: Props) {
               )}
           </ul>
           <div>
-            <ActionBar
-              likes={likes}
-              username={username}
-              text={text}
-              openModal={() => setOpenModal(true)}
-            />
+            <ActionBar post={post} openModal={() => setOpenModal(true)} />
             <CommentForm />
           </div>
         </div>
