@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import HeartIcon from '../ui/icons/HeartIcon'
 import BookmarkIcon from '../ui/icons/BookmarkIcon'
 import { RiChat1Line } from 'react-icons/ri'
@@ -7,7 +7,7 @@ import HeartFillIcon from '../ui/icons/HeartFillIcon'
 import BookmarkFillIcon from '../ui/icons/BookmarkFillIcon'
 import ToggleButton from '../ui/button/ToggleButton'
 import { SimplePost } from '@/model/post'
-import { useSWRConfig } from 'swr'
+import usePosts from '@/hooks/usePosts'
 
 type Props = {
   post: SimplePost
@@ -20,12 +20,12 @@ export default function ActionBar({ post, openModal }: Props) {
   const user = session?.user
   const liked = user ? likes.includes(user.username) : false
   const [bookmarked, setBookmarked] = useState(false)
-  const { mutate } = useSWRConfig()
+  const { setLike } = usePosts()
+
   const handleLike = (like: boolean) => {
-    fetch('api/likes', {
-      method: 'PUT',
-      body: JSON.stringify({ id, like }),
-    }).then(() => mutate('api/posts'))
+    if (user) {
+      setLike(post, user.username, like)
+    }
   }
 
   return (
@@ -43,14 +43,12 @@ export default function ActionBar({ post, openModal }: Props) {
             onClick={openModal}
           />
         </div>
-        <div>
-          <ToggleButton
-            toggled={bookmarked}
-            onToggle={setBookmarked}
-            onIcon={<BookmarkFillIcon />}
-            offIcon={<BookmarkIcon />}
-          />
-        </div>
+        <ToggleButton
+          toggled={bookmarked}
+          onToggle={setBookmarked}
+          onIcon={<BookmarkFillIcon />}
+          offIcon={<BookmarkIcon />}
+        />
       </div>
       <div>
         <p className="font-bold text-sm">{`좋아요 ${likes?.length ?? 0}개`}</p>

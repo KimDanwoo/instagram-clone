@@ -17,6 +17,6 @@ export type FullPost = {
   email: string
   image: string
   createdAt: String
-  likes: string
+  likes: string[]
   comments: Comment[]
 }

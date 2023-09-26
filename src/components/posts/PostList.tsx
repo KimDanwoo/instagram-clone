@@ -1,15 +1,14 @@
 'use client'
-import { SimplePost } from '@/model/post'
 import React from 'react'
-import useSWR from 'swr'
 import PostListCard from './PostListCard'
 import GridSpinner from '../ui/icons/GridSpinner'
+import usePosts from '@/hooks/usePosts'
 
 export default function PostList() {
-  const { data: posts, isLoading: loading } = useSWR<SimplePost[]>('api/posts')
+  const { posts, isLoading } = usePosts()
   return (
     <section>
-      {loading && (
+      {isLoading && (
         <div className=" h-screen flex justify-center items-center">
           <GridSpinner color="blue" />
         </div>
