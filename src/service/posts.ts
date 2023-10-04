@@ -33,6 +33,7 @@ export async function getPost(id: string) {
           "userImage":author->image,
           "image":photo,
           "likes":likes[]->username,
+          "bookmarks":bookmarks[]->username,
           comments[]{comment, "username": Author->username, "image" : Author->image},
           "id":_id, 
           "createdAt": _createdAt

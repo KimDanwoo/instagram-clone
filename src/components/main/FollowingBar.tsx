@@ -1,18 +1,14 @@
 'use client'
-import { HomeUser } from '@/model/user'
 import Link from 'next/link'
 import React from 'react'
 import { SyncLoader } from 'react-spinners'
-import useSWR from 'swr'
 import Avatar from './Avatar'
-import { useSession } from 'next-auth/react'
 import ScrollableBar from '../custom/ScrollableBar'
+import useMe from '@/hooks/useMe'
 
 export default function FollowingBar() {
-  const { data: session } = useSession()
-  const user = session?.user
-  const { data, isLoading: loading, error } = useSWR<HomeUser>('/api/me')
-  const users = data?.following
+  const { user, isLoading: loading } = useMe()
+  const users = user?.following
   return (
     <section>
       {loading ? (

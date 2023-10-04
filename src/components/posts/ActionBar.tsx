@@ -8,6 +8,7 @@ import BookmarkFillIcon from '../ui/icons/BookmarkFillIcon'
 import ToggleButton from '../ui/button/ToggleButton'
 import { SimplePost } from '@/model/post'
 import usePosts from '@/hooks/usePosts'
+import useMe from '@/hooks/useMe'
 
 type Props = {
   post: SimplePost
@@ -16,15 +17,21 @@ type Props = {
 
 export default function ActionBar({ post, openModal }: Props) {
   const { id, likes, username, text } = post
-  const { data: session } = useSession()
-  const user = session?.user
-  const liked = user ? likes.includes(user.username) : false
-  const [bookmarked, setBookmarked] = useState(false)
+  const { user, setBookmark } = useMe()
   const { setLike } = usePosts()
+  
+  const liked = user ? likes.includes(user.username) : false
+  const bookmarked = user ? user.bookmarks.includes(id) : false
 
   const handleLike = (like: boolean) => {
     if (user) {
       setLike(post, user.username, like)
+    }
+  }
+
+  const handleBookmark = (bookmark: boolean) => {
+    if (user) {
+      setBookmark(post.id, bookmark)
     }
   }
 
@@ -45,7 +52,7 @@ export default function ActionBar({ post, openModal }: Props) {
         </div>
         <ToggleButton
           toggled={bookmarked}
-          onToggle={setBookmarked}
+          onToggle={handleBookmark}
           onIcon={<BookmarkFillIcon />}
           offIcon={<BookmarkIcon />}
         />

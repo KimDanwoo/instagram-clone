@@ -12,8 +12,8 @@ type Props = {
 
 const tabs = [
   { name: '게시물', type: 'posts', icon: <PostIcon className="w-3 h-3" /> },
-  { name: '좋아요', type: 'liked', icon: <BookmarkIcon className="w-3 h-3" /> },
-  { name: '북마크', type: 'saved', icon: <HeartIcon className="w-3 h-3" /> },
+  { name: '좋아요', type: 'liked', icon: <HeartIcon className="w-3 h-3" /> },
+  { name: '북마크', type: 'saved', icon: <BookmarkIcon className="w-3 h-3" /> },
 ]
 
 export default function UserPosts({ user }: Props) {
