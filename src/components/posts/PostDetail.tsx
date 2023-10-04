@@ -1,11 +1,11 @@
-import { FullPost, SimplePost } from '@/model/post'
+import { SimplePost } from '@/model/post'
 import React from 'react'
 import Image from 'next/image'
 import ActionBar from './ActionBar'
-import CommentForm from './CommentForm'
-import useSWR from 'swr'
 import UserProfileAvatar from './UserProfileAvatar'
 import CommentUserList from './CommentUserList'
+import usePost from '@/hooks/usePost'
+import GridSpinner from '../ui/icons/GridSpinner'
 
 type Props = {
   post: SimplePost
@@ -14,11 +14,11 @@ type Props = {
 }
 
 export default function PostDetail({ post, priority, setOpenModal }: Props) {
-  const { id, userImage, username, createdAt, image, likes, text } = post
-  const { data } = useSWR<FullPost>(`/api/posts/${id}`)
+  const { id, userImage, username, createdAt, image } = post
+  const { post: data, isLoading, postComment } = usePost(id)
   const comments = data?.comments
-  console.log('data', data)
   const createdAtStr = createdAt.toString()
+
   return (
     <section className="w-[70%] md:w-[90%]  h-[90%] max-w-[1100px] max-h-[631px] bg-white rounded-md md:flex">
       <UserProfileAvatar
@@ -45,24 +45,34 @@ export default function PostDetail({ post, priority, setOpenModal }: Props) {
           isMobile={false}
         />
         <div></div>
-        <div className="p-4 flex flex-col h-full justify-between">
-          <ul className="max-h-[600px]">
-            {comments &&
-              comments.map(
-                ({ image, username: commentUsername, comment }, index) => (
-                  <CommentUserList
-                    key={index}
-                    image={image}
-                    commentUsername={commentUsername}
-                    comment={comment}
-                    username={username}
-                  />
-                )
-              )}
-          </ul>
+        <div className="px-4 flex flex-col h-full justify-between">
+          {isLoading && (
+            <div className="w-full h-full flex items-center justify-center">
+              <GridSpinner />
+            </div>
+          )}
+          {!isLoading && (
+            <ul className="max-h-[600px]">
+              {comments &&
+                comments.map(
+                  ({ image, username: commentUsername, comment }, index) => (
+                    <CommentUserList
+                      key={index}
+                      image={image || ''}
+                      commentUsername={commentUsername}
+                      comment={comment}
+                      username={username}
+                    />
+                  )
+                )}
+            </ul>
+          )}
           <div>
-            <ActionBar post={post} openModal={() => setOpenModal(true)} />
-            <CommentForm />
+            <ActionBar
+              post={post}
+              openModal={() => setOpenModal(true)}
+              onComment={postComment}
+            />
           </div>
         </div>
       </div>

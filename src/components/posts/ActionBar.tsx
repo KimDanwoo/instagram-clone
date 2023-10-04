@@ -1,25 +1,32 @@
-import { useState } from 'react'
 import HeartIcon from '../ui/icons/HeartIcon'
 import BookmarkIcon from '../ui/icons/BookmarkIcon'
 import { RiChat1Line } from 'react-icons/ri'
-import { useSession } from 'next-auth/react'
 import HeartFillIcon from '../ui/icons/HeartFillIcon'
 import BookmarkFillIcon from '../ui/icons/BookmarkFillIcon'
 import ToggleButton from '../ui/button/ToggleButton'
-import { SimplePost } from '@/model/post'
+import { Comment, SimplePost } from '@/model/post'
 import usePosts from '@/hooks/usePosts'
 import useMe from '@/hooks/useMe'
+import CommentForm from './CommentForm'
 
 type Props = {
   post: SimplePost
   openModal: () => void
+  children?: React.ReactNode
+  onComment: (comment: Comment) => void
 }
 
-export default function ActionBar({ post, openModal }: Props) {
-  const { id, likes, username, text } = post
+export default function ActionBar({
+  post,
+  openModal,
+  children,
+  onComment,
+}: Props) {
+  const { id, likes } = post
   const { user, setBookmark } = useMe()
   const { setLike } = usePosts()
-  
+  const { postComment } = usePosts()
+
   const liked = user ? likes.includes(user.username) : false
   const bookmarked = user ? user.bookmarks.includes(id) : false
 
@@ -33,6 +40,10 @@ export default function ActionBar({ post, openModal }: Props) {
     if (user) {
       setBookmark(post.id, bookmark)
     }
+  }
+
+  const handleComment = (comment: string) => {
+    user && onComment({ comment, username: user.username, image: user.image })
   }
 
   return (
@@ -59,14 +70,10 @@ export default function ActionBar({ post, openModal }: Props) {
       </div>
       <div>
         <p className="font-bold text-sm">{`좋아요 ${likes?.length ?? 0}개`}</p>
-        {text && (
-          <p className="my-2">
-            <span className="font-bold text-sm">{username}</span>
-            <span className="ml-3 text-sm">{text}</span>
-          </p>
-        )}
-        <p></p>
+        {children}
       </div>
+
+      <CommentForm onPostComment={handleComment} />
     </>
   )
 }

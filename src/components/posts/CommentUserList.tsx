@@ -15,7 +15,7 @@ export default function CommentUserList({
   username,
 }: Props) {
   return (
-    <li className="flex items-center">
+    <li className="flex items-center my-1">
       <Avatar image={image} size={7} highlight={commentUsername === username} />
       <div>
         <div>
