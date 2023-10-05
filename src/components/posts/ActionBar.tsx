@@ -25,7 +25,6 @@ export default function ActionBar({
   const { id, likes } = post
   const { user, setBookmark } = useMe()
   const { setLike } = usePosts()
-  const { postComment } = usePosts()
 
   const liked = user ? likes.includes(user.username) : false
   const bookmarked = user ? user.bookmarks.includes(id) : false
