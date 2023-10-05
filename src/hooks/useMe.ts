@@ -7,14 +7,14 @@ async function updateBookmark(postId: string, bookmark: boolean) {
   return fetch('/api/bookmarks', {
     method: 'PUT',
     body: JSON.stringify({ id: postId, bookmark }),
-  }).then((r) => r.json())
+  }).then((res) => res.json())
 }
 
 async function updateFollow(targetId: string, follow: boolean) {
   return fetch('/api/follow', {
     method: 'PUT',
     body: JSON.stringify({ id: targetId, follow }),
-  }).then((r) => r.json())
+  }).then((res) => res.json())
 }
 
 export default function useMe() {
@@ -42,9 +42,7 @@ export default function useMe() {
 
   const toggleFollow = useCallback(
     (targetId: string, follow: boolean) => {
-      return mutate(updateFollow(targetId, follow), {
-        populateCache: false,
-      })
+      return mutate(updateFollow(targetId, follow), { populateCache: false })
     },
     [mutate]
   )
