@@ -9,18 +9,22 @@ type Props = {
 }
 export default function FollowButton({ user }: Props) {
   const { username } = user
-  const { user: loggedInUser } = useMe()
+  const { user: loggedInUser, toggleFollow } = useMe()
   const showButton = loggedInUser?.username !== username
-  const isFollowing = loggedInUser?.following.find(
+  const following = loggedInUser?.following.find(
     (item) => item.username === username
   )
+  const handleFollow = () => {
+    toggleFollow(user.id, !following)
+  }
+
   if (!showButton) {
     return null
   }
 
-  if (isFollowing) {
-    return <Button title="언팔로우" onClick={() => {}} red={true} />
+  if (following) {
+    return <Button title="언팔로우" onClick={handleFollow} red={true} />
   }
 
-  return <Button title="팔로우" onClick={() => {}} red={false} />
+  return <Button title="팔로우" onClick={handleFollow} red={false} />
 }
