@@ -2,9 +2,9 @@ import React from 'react'
 
 type Props = {
   title: string
-  onClick: () => void
-  red: boolean
-  disabled: boolean
+  onClick?: () => void
+  red?: boolean
+  disabled?: boolean
 }
 
 export default function Button({ title, onClick, red, disabled }: Props) {
