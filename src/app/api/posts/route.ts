@@ -1,6 +1,6 @@
 import { createPost, getFollowingPostsOf } from '@/service/posts'
 import { withSessionUser } from '@/utils/session'
-import { NextResponse, NextRequest } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET() {
   return withSessionUser(async (user) => {
