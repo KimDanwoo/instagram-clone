@@ -1,6 +1,6 @@
 import { createPost, getFollowingPostsOf } from '@/service/posts'
 import { withSessionUser } from '@/utils/session'
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET() {
   return withSessionUser(async (user) => {
@@ -10,7 +10,7 @@ export async function GET() {
   })
 }
 
-export async function POST(req: NextResponse) {
+export async function POST(req: NextRequest, res: NextResponse) {
   return withSessionUser(async (user) => {
     const form = await req.formData()
     const text = form.get('text')?.toString()
