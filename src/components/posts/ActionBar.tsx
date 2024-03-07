@@ -16,12 +16,7 @@ type Props = {
   onComment: (comment: Comment) => void
 }
 
-export default function ActionBar({
-  post,
-  openModal,
-  children,
-  onComment,
-}: Props) {
+export default function ActionBar({ post, openModal, children, onComment }: Props) {
   const { id, likes } = post
   const { user, setBookmark } = useMe()
   const { setLike } = usePosts()
@@ -49,16 +44,8 @@ export default function ActionBar({
     <>
       <div className="flex justify-between my-3">
         <div className="flex w-40">
-          <ToggleButton
-            toggled={liked}
-            onToggle={handleLike}
-            onIcon={<HeartFillIcon />}
-            offIcon={<HeartIcon />}
-          />
-          <RiChat1Line
-            className="text-3xl ml-3 cursor-pointer"
-            onClick={openModal}
-          />
+          <ToggleButton toggled={liked} onToggle={handleLike} onIcon={<HeartFillIcon />} offIcon={<HeartIcon />} />
+          <RiChat1Line className="text-3xl ml-3 cursor-pointer" onClick={openModal} />
         </div>
         <ToggleButton
           toggled={bookmarked}

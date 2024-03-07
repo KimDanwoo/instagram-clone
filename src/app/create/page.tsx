@@ -19,7 +19,7 @@ export default async function NewPostPage() {
   }
 
   return (
-    <section className="w-full mt-4">
+    <main className="w-full mt-4">
       <div className="flex">
         <div className="w-full mt-12 xl:w-3/5 md:mt-0 md:ml-16 lg:ml-80">
           <div className="w-full h-full m-w-[600px] max-w-xl mx-auto flex flex-col px-14 py-10">
@@ -28,6 +28,6 @@ export default async function NewPostPage() {
         </div>
         <SideBar user={user} />
       </div>
-    </section>
+    </main>
   )
 }

@@ -24,9 +24,7 @@ export default async function UserPage({ params: { username } }: Props) {
   )
 }
 
-export async function generateMetadata({
-  params: { username },
-}: Props): Promise<Metadata> {
+export async function generateMetadata({ params: { username } }: Props): Promise<Metadata> {
   const user = await getUser(username)
   return {
     title: `${user?.name} (@${user?.username}) instagram photos`,

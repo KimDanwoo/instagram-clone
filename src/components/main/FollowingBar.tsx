@@ -16,10 +16,7 @@ export default function FollowingBar() {
       ) : (
         (!users || users?.length === 0) && (
           <li>
-            <Link
-              href={`/user/${user?.username}`}
-              className="flex flex-col items-center mx-2"
-            >
+            <Link href={`/user/${user?.username}`} className="flex flex-col items-center mx-2">
               <Avatar image={user?.image} size={13} highlight={true}></Avatar>
               <p className=" text-xs mt-2">{user?.username}</p>
             </Link>
@@ -28,19 +25,12 @@ export default function FollowingBar() {
       )}
       {users && users?.length > 0 && (
         <ScrollableBar>
-          <Link
-            href={`/user/${user?.username}`}
-            className="flex flex-col items-center mx-2"
-          >
+          <Link href={`/user/${user?.username}`} className="flex flex-col items-center mx-2">
             <Avatar image={user?.image} size={13} highlight={true}></Avatar>
             <p className=" text-xs mt-2">{user?.username}</p>
           </Link>
           {users.map(({ username, image }) => (
-            <Link
-              href={`/user/${username}`}
-              className="flex flex-col items-center mx-2"
-              key={username}
-            >
+            <Link href={`/user/${username}`} className="flex flex-col items-center mx-2" key={username}>
               <Avatar image={image} size={13}></Avatar>
               <p className=" text-xs mt-2">{username}</p>
             </Link>

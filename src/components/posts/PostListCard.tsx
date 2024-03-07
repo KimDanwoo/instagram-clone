@@ -28,9 +28,7 @@ export default function PostListCard({ post, priority = false }: Props) {
       <div className="flex py-2 items-center">
         <Avatar image={userImage} size={7} />
         <span className="ml-4 text-sm font-bold">{username}</span>
-        <span className="ml-4 text-sm text-gray-400">
-          {parseDate(createdAt.toString())}
-        </span>
+        <span className="ml-4 text-sm text-gray-400">{parseDate(createdAt.toString())}</span>
       </div>
       <div className="w-[465px] h-[465px] object-cover">
         <Image
@@ -43,11 +41,7 @@ export default function PostListCard({ post, priority = false }: Props) {
           onClick={() => setOpenModal(true)}
         />
       </div>
-      <ActionBar
-        post={post}
-        openModal={() => setOpenModal(true)}
-        onComment={handlePostComment}
-      >
+      <ActionBar post={post} openModal={() => setOpenModal(true)} onComment={handlePostComment}>
         <p className="my-2">
           <span className="font-bold text-sm">{username}</span>
           <span className="ml-3 text-sm">{text}</span>
@@ -63,11 +57,7 @@ export default function PostListCard({ post, priority = false }: Props) {
       {openModal && (
         <ModalPortal>
           <PostModal onClose={() => setOpenModal(false)}>
-            <PostDetail
-              post={post}
-              priority={priority}
-              setOpenModal={setOpenModal}
-            />
+            <PostDetail post={post} priority={priority} setOpenModal={setOpenModal} />
           </PostModal>
         </ModalPortal>
       )}

@@ -26,9 +26,7 @@ export default function useMe() {
       const bookmarks = user.bookmarks
       const newUser = {
         ...user,
-        bookmarks: bookmark
-          ? [...bookmarks, postId]
-          : bookmarks.filter((b) => b !== postId),
+        bookmarks: bookmark ? [...bookmarks, postId] : bookmarks.filter((b) => b !== postId),
       }
       return mutate(updateBookmark(postId, bookmark), {
         optimisticData: newUser,

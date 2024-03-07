@@ -74,8 +74,7 @@ export default function AppHeader() {
   )
 }
 
-const ulStyle =
-  'flex md:flex-col items-center w-48 justify-around md:w-full lg:items-start lg:p-2 lg:pt-11'
+const ulStyle = 'flex md:flex-col items-center w-48 justify-around md:w-full lg:items-start lg:p-2 lg:pt-11'
 
 const liStyle = 'group p-2 rounded-xl hover:bg-gray-100 lg:w-full lg:flex my-2'
 const headerStyle =

@@ -9,11 +9,7 @@ import useDebounce from '@/hooks/useDebounce'
 export default function UserSearch() {
   const [keyword, setKeyword] = useState('')
   const debounceKeyword = useDebounce(keyword)
-  const {
-    data: users,
-    isLoading,
-    error,
-  } = useSWR<SearchUser[]>(`api/search/${debounceKeyword}`)
+  const { data: users, isLoading, error } = useSWR<SearchUser[]>(`api/search/${debounceKeyword}`)
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -40,10 +36,7 @@ export default function UserSearch() {
       <ul className="w-full p-4">
         {users &&
           users.map((user, index) => (
-            <li
-              key={index}
-              className="p-2 cursor-pointer hover:bg-gray-100 rounded-sm bg-white my-2"
-            >
+            <li key={index} className="p-2 cursor-pointer hover:bg-gray-100 rounded-sm bg-white my-2">
               <UserCard user={user} />
             </li>
           ))}

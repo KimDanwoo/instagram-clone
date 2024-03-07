@@ -6,7 +6,7 @@ export async function PUT(req: NextRequest) {
   return withSessionUser(async (user) => {
     const { id: targetId, follow: isFollow } = await req.json()
 
-    if (!targetId || isFollow === undefined) {
+    if (!targetId || !isFollow) {
       return new Response('Bad Request', { status: 400 })
     }
 

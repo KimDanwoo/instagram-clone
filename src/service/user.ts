@@ -1,13 +1,13 @@
-import { SearchUser } from '@/model/user';
-import { client } from './sanity';
+import { SearchUser } from '@/model/user'
+import { client } from './sanity'
 
 type OAuthUser = {
-  id: string;
-  email: string;
-  name: string;
-  username: string;
-  image?: string | null;
-};
+  id: string
+  email: string
+  name: string
+  username: string
+  image?: string | null
+}
 
 export async function addUser({ id, username, email, name, image }: OAuthUser) {
   return client.createIfNotExists({
@@ -20,7 +20,7 @@ export async function addUser({ id, username, email, name, image }: OAuthUser) {
     following: [],
     followers: [],
     bookmarks: [],
-  });
+  })
 }
 
 export async function getUserByUsername(username: string) {
@@ -32,13 +32,11 @@ export async function getUserByUsername(username: string) {
       followers[]->{username,image},
       "bookmarks":bookmarks[]->_id
     }`
-  );
+  )
 }
 
 export async function searchUsers(keyword?: string) {
-  const query = keyword
-    ? `&& (name match "${keyword}") || (username match "${keyword}")`
-    : '';
+  const query = keyword ? `&& (name match "${keyword}") || (username match "${keyword}")` : ''
   return client
     .fetch(
       `*[_type =="user" ${query}]{
@@ -54,7 +52,7 @@ export async function searchUsers(keyword?: string) {
         following: user.following ?? 0,
         followers: user.followers ?? 0,
       }))
-    );
+    )
 }
 
 export async function getUserForProfile(username: string) {
@@ -74,7 +72,7 @@ export async function getUserForProfile(username: string) {
       following: user.following ?? 0,
       followers: user.followers ?? 0,
       posts: user.posts ?? 0,
-    }));
+    }))
 }
 
 export async function addBookmark(userId: string, postId: string) {
@@ -87,30 +85,26 @@ export async function addBookmark(userId: string, postId: string) {
         _type: 'reference',
       },
     ])
-    .commit({ autoGenerateArrayKeys: true });
+    .commit({ autoGenerateArrayKeys: true })
 }
 
 export async function removeBookmark(userId: string, postId: string) {
   return client
     .patch(userId)
     .unset([`bookmarks[_ref=="${postId}"]`])
-    .commit();
+    .commit()
 }
 
 export async function follow(myId: string, targetId: string) {
   return client
     .transaction() //
     .patch(myId, (user) =>
-      user
-        .setIfMissing({ following: [] })
-        .append('following', [{ _ref: targetId, _type: 'reference' }])
+      user.setIfMissing({ following: [] }).append('following', [{ _ref: targetId, _type: 'reference' }])
     )
     .patch(targetId, (user) =>
-      user
-        .setIfMissing({ followers: [] })
-        .append('followers', [{ _ref: myId, _type: 'reference' }])
+      user.setIfMissing({ followers: [] }).append('followers', [{ _ref: myId, _type: 'reference' }])
     )
-    .commit({ autoGenerateArrayKeys: true });
+    .commit({ autoGenerateArrayKeys: true })
 }
 
 export async function unFollow(myId: string, targetId: string) {
@@ -118,5 +112,5 @@ export async function unFollow(myId: string, targetId: string) {
     .transaction() //
     .patch(myId, (user) => user.unset([`following[_ref=="${targetId}"]`]))
     .patch(targetId, (user) => user.unset([`followers[_ref=="${myId}"]`]))
-    .commit({ autoGenerateArrayKeys: true });
+    .commit({ autoGenerateArrayKeys: true })
 }

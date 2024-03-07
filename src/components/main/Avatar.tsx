@@ -3,17 +3,11 @@ import React from 'react'
 type Props = { image?: string | null; size: number; highlight?: boolean }
 
 export default function Avatar({ image, size, highlight }: Props) {
-  const itemSize =
-    size === 9 ? 'small' : size === 7 ? 'middle' : size === 13 ? 'large' : 'big'
+  const itemSize = size === 9 ? 'small' : size === 7 ? 'middle' : size === 13 ? 'large' : 'big'
   return (
     <div className={getContainerStyle(itemSize, highlight ? highlight : false)}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        className={getImgSizeStyle(itemSize)}
-        src={image || ''}
-        alt="profile"
-        referrerPolicy="no-referrer"
-      />
+      <img className={getImgSizeStyle(itemSize)} src={image || ''} alt="profile" referrerPolicy="no-referrer" />
     </div>
   )
 }
