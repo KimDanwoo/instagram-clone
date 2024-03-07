@@ -7,12 +7,7 @@ type Props = {
   offIcon: React.ReactNode
 }
 
-export default function ToggleButton({
-  toggled,
-  onToggle,
-  onIcon,
-  offIcon,
-}: Props) {
+export default function ToggleButton({ toggled, onToggle, onIcon, offIcon }: Props) {
   return (
     <button className="h-[30px]" onClick={() => onToggle(!toggled)}>
       {toggled ? onIcon : offIcon}

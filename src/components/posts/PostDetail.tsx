@@ -21,12 +21,7 @@ export default function PostDetail({ post, priority, setOpenModal }: Props) {
 
   return (
     <section className="w-[70%] md:w-[90%]  h-[90%] max-w-[1100px] max-h-[631px] bg-white rounded-md md:flex">
-      <UserProfileAvatar
-        userImage={userImage}
-        username={username}
-        createdAtStr={createdAtStr}
-        isMobile={true}
-      />
+      <UserProfileAvatar userImage={userImage} username={username} createdAtStr={createdAtStr} isMobile={true} />
       <div className="w-full h-[265px] md:h-[100%] max-w-[631px] max-h-[631px] object-cover">
         <Image
           className="w-full h-full object-cover md:rounded-l-md"
@@ -38,12 +33,7 @@ export default function PostDetail({ post, priority, setOpenModal }: Props) {
         />
       </div>
       <div className="w-[100%] h-[50%] md:h-[100%] flex flex-col justify-between ">
-        <UserProfileAvatar
-          userImage={userImage}
-          username={username}
-          createdAtStr={createdAtStr}
-          isMobile={false}
-        />
+        <UserProfileAvatar userImage={userImage} username={username} createdAtStr={createdAtStr} isMobile={false} />
         <div></div>
         <div className="px-4 flex flex-col h-full justify-between">
           {isLoading && (
@@ -54,25 +44,19 @@ export default function PostDetail({ post, priority, setOpenModal }: Props) {
           {!isLoading && (
             <ul className="max-h-[600px]">
               {comments &&
-                comments.map(
-                  ({ image, username: commentUsername, comment }, index) => (
-                    <CommentUserList
-                      key={index}
-                      image={image || ''}
-                      commentUsername={commentUsername}
-                      comment={comment}
-                      username={username}
-                    />
-                  )
-                )}
+                comments.map(({ image, username: commentUsername, comment }, index) => (
+                  <CommentUserList
+                    key={index}
+                    image={image || ''}
+                    commentUsername={commentUsername}
+                    comment={comment}
+                    username={username}
+                  />
+                ))}
             </ul>
           )}
           <div>
-            <ActionBar
-              post={post}
-              openModal={() => setOpenModal(true)}
-              onComment={postComment}
-            />
+            <ActionBar post={post} openModal={() => setOpenModal(true)} onComment={postComment} />
           </div>
         </div>
       </div>

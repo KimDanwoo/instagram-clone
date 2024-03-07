@@ -17,9 +17,7 @@ export default function FollowButton({ user }: Props) {
   const [isFetching, setIsFetching] = useState(false)
   const isUpdating = isPending || isFetching
   const showButton = loggedInUser?.username !== username
-  const following =
-    loggedInUser &&
-    loggedInUser.following?.find((item) => item.username === username)
+  const following = loggedInUser && loggedInUser.following?.find((item) => item.username === username)
 
   const handleFollow = async () => {
     setIsFetching(true)
@@ -42,12 +40,7 @@ export default function FollowButton({ user }: Props) {
             <PulseLoader size={6} />
           </div>
         )}
-        <Button
-          title="언팔로우"
-          onClick={handleFollow}
-          red={true}
-          disabled={isUpdating}
-        />
+        <Button title="언팔로우" onClick={handleFollow} red={true} disabled={isUpdating} />
       </div>
     )
   }
@@ -59,12 +52,7 @@ export default function FollowButton({ user }: Props) {
           <PulseLoader size={6} />
         </div>
       )}
-      <Button
-        title="팔로우"
-        onClick={handleFollow}
-        red={false}
-        disabled={isUpdating}
-      />
+      <Button title="팔로우" onClick={handleFollow} red={false} disabled={isUpdating} />
     </div>
   )
 }

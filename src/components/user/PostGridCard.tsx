@@ -35,11 +35,7 @@ export default function PostGridCard({ post, priority = false }: Props) {
       {openModal && (
         <ModalPortal>
           <PostModal onClose={() => setOpenModal(false)}>
-            <PostDetail
-              post={post}
-              priority={priority}
-              setOpenModal={setOpenModal}
-            />
+            <PostDetail post={post} priority={priority} setOpenModal={setOpenModal} />
           </PostModal>
         </ModalPortal>
       )}

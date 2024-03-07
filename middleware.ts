@@ -12,21 +12,10 @@ export async function middleware(req: NextRequest) {
 
     const { pathname, search, origin, basePath } = req.nextUrl
     const signInUrl = new URL(`${basePath}/auth/signin`, origin)
-    signInUrl.searchParams.append(
-      'callbackUrl',
-      `${basePath}${pathname}${search}`
-    )
+    signInUrl.searchParams.append('callbackUrl', `${basePath}${pathname}${search}`)
     return NextResponse.redirect(signInUrl)
   }
 }
 export const config = {
-  matcher: [
-    '/new',
-    '/',
-    '/api/bookmarks',
-    '/api/comments',
-    '/api/likes',
-    '/api/me',
-    '/api/posts/:path*',
-  ],
+  matcher: ['/new', '/', '/api/bookmarks', '/api/comments', '/api/likes', '/api/me', '/api/posts/:path*'],
 }

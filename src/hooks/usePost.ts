@@ -10,12 +10,7 @@ async function addComment(id: string, comment: string) {
 }
 
 export default function usePost(postId: string) {
-  const {
-    data: post,
-    isLoading,
-    error,
-    mutate,
-  } = useSWR<FullPost>(`/api/posts/${postId}`)
+  const { data: post, isLoading, error, mutate } = useSWR<FullPost>(`/api/posts/${postId}`)
 
   const { mutate: globalMutate } = useSWRConfig()
 

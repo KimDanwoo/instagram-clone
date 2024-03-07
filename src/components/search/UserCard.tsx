@@ -7,9 +7,7 @@ type Props = {
   user: SearchUser
 }
 
-export default function UserCard({
-  user: { name, username, image, following, followers },
-}: Props) {
+export default function UserCard({ user: { name, username, image, following, followers } }: Props) {
   return (
     <Link href={`/user/${username}`} className="flex items-center">
       <Avatar image={image} size={7} />

@@ -14,10 +14,7 @@ export default function CommentForm({ onPostComment }: Props) {
     setComment('')
   }
   return (
-    <form
-      className="flex items-center justify-between py-1 my-2"
-      onSubmit={handleSubmit}
-    >
+    <form className="flex items-center justify-between py-1 my-2" onSubmit={handleSubmit}>
       <div className="text-sm w-5/6 flex justify-between">
         <input
           type="text"

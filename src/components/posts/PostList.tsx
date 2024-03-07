@@ -14,12 +14,7 @@ export default function PostList() {
         </div>
       )}
       {posts && (
-        <ul>
-          {posts &&
-            posts.map((post, index) => (
-              <PostListCard key={post.id} post={post} priority={index < 2} />
-            ))}
-        </ul>
+        <ul>{posts && posts.map((post, index) => <PostListCard key={post.id} post={post} priority={index < 2} />)}</ul>
       )}
     </section>
   )

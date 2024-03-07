@@ -8,12 +8,7 @@ type Props = {
   username: string
 }
 
-export default function CommentUserList({
-  image,
-  commentUsername,
-  comment,
-  username,
-}: Props) {
+export default function CommentUserList({ image, commentUsername, comment, username }: Props) {
   return (
     <li className="flex items-center my-1">
       <Avatar image={image} size={7} highlight={commentUsername === username} />
